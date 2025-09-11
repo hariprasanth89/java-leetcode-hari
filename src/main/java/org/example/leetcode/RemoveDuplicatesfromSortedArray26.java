@@ -22,6 +22,8 @@ public class RemoveDuplicatesfromSortedArray26 {
         }
         int count = 0;
         for(int i = 1; i < nums.length ; i++){
+            // Time complexity: O(n) - The loop iterates through the array once.
+            // Space complexity: O(1) - No extra space is used beyond a few variables.
             if(nums[count] != nums[i]){
                 nums[++count] = nums[i];
             }

@@ -2,6 +2,7 @@ package org.example.walmart;
 
 import java.util.HashSet;
 import java.util.Arrays; // Import Arrays for potential use in optimized solution
+import java.util.Set;
 
 public class SubSudokuValidatorFullTimeKaratInterviewQ {
 
@@ -144,6 +145,72 @@ public class SubSudokuValidatorFullTimeKaratInterviewQ {
         // If all rows and all columns pass the validation checks, the grid is a valid sub-Sudoku.
         return true;
     }
+    // Brute Force approach
+    public static boolean isValidBruteForce(int[][] grid) {
+        int N = grid.length;
+
+        // Check each row
+        for (int i = 0; i < N; i++) {
+            for (int num = 1; num <= N; num++) {
+                boolean found = false;
+                // Search for num in the row
+                for (int j = 0; j < N; j++) {
+                    if (grid[i][j] == num) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) return false; // If any number missing, invalid
+            }
+        }
+
+        // Check each column
+        for (int j = 0; j < N; j++) {
+            for (int num = 1; num <= N; num++) {
+                boolean found = false;
+                // Search for num in the column
+                for (int i = 0; i < N; i++) {
+                    if (grid[i][j] == num) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) return false; // If any number missing, invalid
+            }
+        }
+
+        return true;
+    }
+
+    // Optimized approach
+    public static boolean isValidOptimized(int[][] grid) {
+        int N = grid.length;
+
+        // Check rows
+        for (int i = 0; i < N; i++) {
+            Set<Integer> seen = new HashSet<>();
+            for (int j = 0; j < N; j++) {
+                int num = grid[i][j];
+                // Only allow 1..N numbers, and no duplicates
+                if (num < 1 || num > N || !seen.add(num)) {
+                    return false;
+                }
+            }
+        }
+
+        // Check columns
+        for (int j = 0; j < N; j++) {
+            Set<Integer> seen = new HashSet<>();
+            for (int i = 0; i < N; i++) {
+                int num = grid[i][j];
+                if (num < 1 || num > N || !seen.add(num)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 
     public static void main(String[] argv) {
         int[][] grid1 = {
@@ -252,7 +319,7 @@ public class SubSudokuValidatorFullTimeKaratInterviewQ {
 
 //
 //        System.out.println("--- Brute Force Approach ---");
-//        System.out.println("validateSudoku(grid1): " + validateSudoku(grid1));
+        System.out.println("validateSudoku(grid1): " + validateSudoku(grid1));
 //        System.out.println("validateSudoku(grid2): " + validateSudoku(grid2));
 //        System.out.println("validateSudoku(grid3): " + validateSudoku(grid3));
 //        System.out.println("validateSudoku(grid4): " + validateSudoku(grid4));

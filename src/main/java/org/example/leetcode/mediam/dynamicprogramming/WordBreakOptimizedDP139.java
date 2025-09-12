@@ -1,4 +1,4 @@
-package org.example.leetcode.dynamicprogramming;
+package org.example.leetcode.mediam.dynamicprogramming;
 
 import java.util.Arrays;
 import java.util.HashSet;

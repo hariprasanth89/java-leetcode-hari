@@ -34,6 +34,29 @@ public class BuyAndSell {
         }
         return maxProfit;
     }
+    // Brute force solution
+    public static int bestBuyAndSellStockBruteForce(int[] prices) {
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[j] - prices[i] > maxProfit) {
+                    maxProfit = prices[j] - prices[i];
+                }
+            }
+        }
+        return maxProfit;
+    }
+
+    // Optimized solution (same as bestBuyAndSellStockWay2)
+    public static int bestBuyAndSellStockOptimized(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int price : prices) {
+            minPrice = Math.min(minPrice, price);
+            maxProfit = Math.max(maxProfit, price - minPrice);
+        }
+        return maxProfit;
+    }
 
     public static void main(String[] args) {
         //Positive  scenarios

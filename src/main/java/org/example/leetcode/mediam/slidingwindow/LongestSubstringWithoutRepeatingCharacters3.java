@@ -1,6 +1,8 @@
 package org.example.leetcode.mediam.slidingwindow;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters3 {
@@ -53,6 +55,51 @@ public class LongestSubstringWithoutRepeatingCharacters3 {
             }
         }
         return max; // Return the maximum length of the substring without repeating characters
+    }
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0;
+        int right = 0;
+        int maxLength = 0;
+        Map<Character, Integer> charIndexMap = new HashMap<>();
+//
+//        while(right < s.length()){
+//            if(charIndexMap.containsKey(s.charAt(right))){
+//                left = Math.max(left, charIndexMap.get(s.charAt(right)) + 1);
+//            }
+//
+//            charIndexMap.put(s.charAt(right), right);
+//            maxLength = Math.max(maxLength, right - left + 1);
+//            right++;
+//        }
+
+        while (right < s.length()) {
+            char currentChar = s.charAt(right);
+            if (charIndexMap.containsKey(currentChar) && charIndexMap.get(currentChar) >= left) {
+                left = charIndexMap.get(currentChar) + 1;
+            }
+            charIndexMap.put(currentChar, right);
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        }
+        return maxLength;
+    }
+
+    public int lengthOfLongestSubstringHashMapDifferentApproach(String s) {
+        if(s == null || s.isEmpty()) return 0;
+        int max = 0;
+        int left = 0;
+        int right = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        while(right < s.length()){
+            char c = s.charAt(right);
+            if(map.containsKey(c)){
+                left = Math.max(left, map.get(c) + 1);
+            }
+            map.put(c, right);
+            max = Math.max(max, right - left + 1);
+            right++;
+        }
+        return max;
     }
 
 

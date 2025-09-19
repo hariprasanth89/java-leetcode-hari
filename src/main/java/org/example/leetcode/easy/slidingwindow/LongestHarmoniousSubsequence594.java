@@ -13,16 +13,17 @@ public class LongestHarmoniousSubsequence594 {
         Arrays.sort(nums); // Sort the input array to enable the sliding window approach.
         int left = 0; // Initialize the left pointer of the sliding window.
         int max = 0; // Initialize the maximum length of a harmonious subsequence found so far.
-        for(int i = 0; i< nums.length; i++){ // Iterate through the array with the right pointer 'i'.
-            while(nums[i] - nums[left] > 1){ // While the difference between the current element and the left element is greater than 1,
+        for (int i = 0; i < nums.length; i++) { // Iterate through the array with the right pointer 'i'.
+            while (nums[i] - nums[left] > 1) { // While the difference between the current element and the left element is greater than 1,
                 left++; // shrink the window from the left.
             }
-            if(nums[i] - nums[left] == 1){ // If the difference is exactly 1, we have a harmonious subsequence.
-                max = Math.max(max, i - left+1); // Update the maximum length with the current window size.
+            if (nums[i] - nums[left] == 1) { // If the difference is exactly 1, we have a harmonious subsequence.
+                max = Math.max(max, i - left + 1); // Update the maximum length with the current window size.
             }
         }
         return max; // Return the maximum length found.
     }    // Optimized approach using sliding window
+
     // This approach is more robust for finding the longest harmonious subsequence
     // when the definition implies that the subsequence elements must be contiguous
     // in the sorted array, which is not strictly true for a "subsequence".
@@ -54,6 +55,27 @@ public class LongestHarmoniousSubsequence594 {
         return maxLength;
     }
 
+    public static int findTheLHS(int[] nums) {
+        Arrays.sort(nums);
+        int left = 0;
+        int right = 1;
+        int max = 0;
+        while (right < nums.length) {
+            int diff = nums[right] - nums[left];
+            if (diff == 1) {
+                max = Math.max(max, right - left + 1);
+            }
+            // 2 , 2 , 3
+            if (diff <= 1) {
+                right++;
+            } else {
+                left++;
+            }
+
+        }
+        return max;
+    }
+
 
     // Optimized approach using HashMap
     public int findLHS(int[] nums) {
@@ -63,10 +85,11 @@ public class LongestHarmoniousSubsequence594 {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
         for (int key : map.keySet()) {
-            if (map.containsKey(key + 1)) {
+            if (map.containsKey(key + 1)) { // Check if a number with a difference of exactly 1 exists
                 res = Math.max(res, map.get(key) + map.get(key + 1));
             }
         }
+        System.out.println("MAP" + map);
         return res;
     }
 
@@ -142,13 +165,15 @@ public class LongestHarmoniousSubsequence594 {
     public static void main(String[] args) {
         LongestHarmoniousSubsequence594 solution = new LongestHarmoniousSubsequence594();
         int[] nums = {1, 3, 2, 2, 5, 2, 3, 7};
-        System.out.println("Longest harmonious subsequence length: " +solution.findLHSMap(nums));
+        System.out.println( "findTheLHS : " + findTheLHS(nums));
+        System.out.println("Longest harmonious subsequence length: " + solution.findLHSSlidingWindow(nums));
         // Test case 1
-     //   int[] nums1 = {1, 3, 2, 2, 5, 2, 3, 7};
-        int[] nums1 = {1, 2, 3, 4};;
+        //   int[] nums1 = {1, 3, 2, 2, 5, 2, 3, 7};
+        int[] nums1 = {1, 2, 3, 4};
+        ;
         int expected1 = 5; // [3,2,2,2,3] or [1,2,2,2,3]
-        int result1 = solution.findLHS(nums1);
-       // int result1 = solution.findLHSDifferentApproach(nums1);
+        int result1 = solution.findLHS(nums);
+        // int result1 = solution.findLHSDifferentApproach(nums1);
         System.out.println("Optimized Test Case 1: nums = " + Arrays.toString(nums1) + ", Expected = " + expected1 + ", Got = " + result1);
         assert result1 == expected1 : "Optimized Test Case 1 Failed";
 

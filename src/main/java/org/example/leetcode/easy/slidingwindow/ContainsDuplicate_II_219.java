@@ -75,7 +75,24 @@ public class ContainsDuplicate_II_219 {
         }
         return false;
     }
+    public static boolean containDuplicate(int[] nums, int k){
+        Set<Integer> seen = new HashSet<>();
+        for(int i = 0; i <= nums.length; i++){
+            if(!seen.add(nums[i])){
+                return true;
+            }
+            // FIRST DIFF
+//            if(i > k){
+//                seen.remove(nums[i - k -1]);
+//            }
+            // TWO DIFFERANCE  seen SIZE BASED
+            if(seen.size() > k){
+                seen.remove(nums[i - k -1]);
+            }
 
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         ContainsDuplicate_II_219 solution = new ContainsDuplicate_II_219();
@@ -83,7 +100,7 @@ public class ContainsDuplicate_II_219 {
         // Test Case 1: Basic case with duplicate within k
         int[] nums1 = {1, 2, 3,1};
         int k1 = 3;
-        System.out.println("Test Case 1: nums = [1,2,3,1], k = 3 -> Expected: true, Actual: " + solution.containsNearbyDuplicate(nums1, k1)); // Expected: true
+        System.out.println("Test Case 1: nums = [1,2,3,1], k = 3 -> Expected: true, Actual: " + solution.containDuplicate(nums1, k1)); // Expected: true
 
         // Test Case 2: Duplicate exactly at distance k
         int[] nums2 = {1, 0, 1, 1};

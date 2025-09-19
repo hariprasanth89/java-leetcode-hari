@@ -3,6 +3,19 @@ package org.example.leetcode.mediam.dynamicprogramming;
 public class MaximumProductSubarray152 {
 
 
+    public int maxProduct(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int product = (nums[i] - 1) * (nums[j] - 1);
+                if (product > max) {
+                    max = product;
+                }
+            }
+        }
+        return max;
+    }
+
     public int maxProductBruteForce(int[] nums) {
 //         Brute Force Solution
 //         Time Complexity: O(n^2)
@@ -66,7 +79,8 @@ public class MaximumProductSubarray152 {
 
         // Test cases for Brute Force
         System.out.println("Brute Force Tests:");
-        System.out.println("Test 1: [2,3,-2,4] -> " + solution.maxProductBruteForce(new int[]{2, 3, -2, 4})); // Expected: 6
+       // System.out.println("Test 1: [2,3,-2,4] -> " + solution.maxProductBruteForce(new int[]{2, 3, -2, 4})); // Expected: 6
+        maxProductSimplified(new int[]{2, 3, -2, 4});
         System.out.println("Test 2: [-2,0,-1] -> " + solution.maxProductBruteForce(new int[]{-2, 0, -1})); // Expected: 0
         System.out.println("Test 3: [-2,3,-4] -> " + solution.maxProductBruteForce(new int[]{-2, 3, -4})); // Expected: 24
         System.out.println("Test 4: [0,2] -> " + solution.maxProductBruteForce(new int[]{0, 2})); // Expected: 2

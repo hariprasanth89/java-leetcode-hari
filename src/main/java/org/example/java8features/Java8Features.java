@@ -66,7 +66,6 @@ public class Java8Features {
         List<Integer> immutableListInteger = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 5, 6, 8);
         distinctValuesUsingJavaStreamApi(immutableListInteger);
 
-
     }
 
 

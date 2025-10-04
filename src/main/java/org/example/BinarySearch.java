@@ -36,6 +36,22 @@ public class BinarySearch {
         }
     }
 
+    // This method performs a linear search (brute-force approach)
+    public static int linearSearch(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return i; // Target found, return its index
+            }
+        }
+        return -1; // Target not found
+    }
+
+    // This method is an optimized version of the iterative binary search
+    // It's essentially the same as the 'search' method, as binary search is already optimized for sorted arrays.
+    public static int optimizedSearch(int[] nums, int target) {
+        return search(nums, target); // Binary search is already an optimized approach for sorted arrays
+    }
+
     // This method prints even and odd numbers from 0 to n
     public static void printEvenAndOddNumbers(int n) {
         for (int i = 0; i <= n; i++) {
@@ -49,13 +65,23 @@ public class BinarySearch {
 
     // Main method to test the binary search and print functions
 
-
     public static void main(String[] args) {
 
-//        int[] nums = new int[]{-1,0,3,5,9,12};
-//        int target = 9;
-//        int searched = search(nums, target);
-//        System.out.println(searched);
-        printEvenAndOddNumbers(10);
+        int[] nums = new int[]{-1,0,3,5,9,12};
+        int target = 9;
+
+        // Test iterative binary search
+        System.out.println("Iterative Binary Search:");
+        System.out.println("Target " + target + " found at index: " + search(nums, target)); // Expected: 4
+
+        // Test recursive binary search
+//        System.out.println("\nRecursive Binary Search:");
+//        System.out.println("Target " + target + " found at index: " + searchRecursive(nums, target, 0, nums.length - 1)); // Expected: 4
+
+        // Test linear search (brute-force)
+        System.out.println("\nLinear Search (Brute-Force):");
+        System.out.println("Target " + target + " found at index: " + linearSearch(nums, target)); // Expected: 4
+
+        // printEvenAndOddNumbers(10);
     }
 }

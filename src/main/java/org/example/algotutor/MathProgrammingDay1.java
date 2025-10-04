@@ -1,6 +1,6 @@
 package org.example.algotutor;
 
-public class Day1 {
+public class MathProgrammingDay1 {
 
 
     public static int factorNumsWithOutOptimizeSolution(int num){
@@ -74,6 +74,14 @@ public class Day1 {
         return count;
     }
 
+    public static boolean isPrime(int num){
+        if (num <= 1) { // Numbers less than or equal to 1 are not prime
+            return false;
+        }
+        // A prime number has exactly two factors: 1 and itself.
+        // The optimized factor counting method will return 2 for prime numbers.
+        return factorNumsOptimized(num) == 2;
+    }
 
 
 
@@ -81,9 +89,14 @@ public class Day1 {
 //        System.out.println(STR." No Optimize solution Count Of Factors : \{factorNumsWithOutOptimizeSolution(36)}");
 //        System.out.println(STR."Optimize solution - Count Of Factors : \{factorNumsWithOptimizeSolution(36)}");
 
-        int num = 36;
-        System.out.println(STR."Brute Force Count Of Factors for \{num}: \{factorNumsBruteForce(num)}");
-        System.out.println(STR."Optimized Count Of Factors for \{num}: \{factorNumsOptimized(num)}");
+//        int num = 36;
+//        System.out.println(STR."Brute Force Count Of Factors for \{num}: \{factorNumsBruteForce(num)}");
+//        System.out.println(STR."Optimized Count Of Factors for \{num}: \{factorNumsOptimized(num)}");
+
+        System.out.println(isPrime(23));
+
+
+
     }
 
 

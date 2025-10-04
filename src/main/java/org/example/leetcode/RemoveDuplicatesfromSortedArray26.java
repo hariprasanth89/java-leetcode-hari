@@ -35,13 +35,21 @@ public class RemoveDuplicatesfromSortedArray26 {
         // Define an array with duplicate elements
         int[] arr = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
         // Call the removeDuplicates method to process the array
-        int removeDuplicates = removeDuplicates(arr);
-        System.out.println("Result : "+removeDuplicates);
+        int removeDuplicates = removeDuplicatesDiff(arr);
+        System.out.println("Result : " + removeDuplicates);
         // Print the unique elements of the modified array
-        for(int i = 0; i < removeDuplicates; i++){
+        for (int i = 0; i < removeDuplicates; i++) {
             System.out.print(arr[i] + " ");
         }
-        System.out.println(removeDuplicatesDiff(new int[]{1,1,2,2,3,3}));
-    }
+        System.out.println(removeDuplicatesDiff(new int[]{1, 1, 2, 2, 3, 3}));
 
+        for (int i = 0; i < removeDuplicates; i++) {
+            if (i + 1 == removeDuplicates) {
+                System.out.print(arr[i]);
+            } else {
+                System.out.print(STR."\{arr[i]} -> ");
+            }
+        }
+
+    }
 }

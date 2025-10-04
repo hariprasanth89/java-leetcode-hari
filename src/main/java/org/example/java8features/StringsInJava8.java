@@ -1,8 +1,10 @@
-package org.example;
+package org.example.java8features;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StringsInJava8 {
@@ -39,7 +41,20 @@ public class StringsInJava8 {
 //        result.forEach(item -> {
 //            System.out.println("result " + item);
 //        });
+        List<String> listStr = Arrays.asList("AA","BB","CC","AA");
+//        listStr.forEach(item -> {
+//           // System.out.println("result " + item);
+//            if (item.equalsIgnoreCase("AA")){
+//                System.out.println(listStr.indexOf(item));
+//            }
+//        });
+        IntStream.range(0, listStr.size()).forEach(i -> {
+            if (listStr.get(i).equalsIgnoreCase("AA")){
+                System.out.println(STR."\{i}   \{listStr.get(i)}");
+            }
+        });
 
     }
+
 
 }

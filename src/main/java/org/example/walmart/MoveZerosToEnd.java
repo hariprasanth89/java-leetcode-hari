@@ -1,5 +1,8 @@
 package org.example.walmart;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class MoveZerosToEnd {
 
 
@@ -19,8 +22,11 @@ public class MoveZerosToEnd {
     public static void main(String[] args) {
         int[] nums = {0, 1, 0, 3, 12};
         moveZeroes(nums);
-        for (int num : nums) {
-            System.out.print(num + " ");
-        }
+        //Arrays.stream(nums).forEach(System.out::println);
+
+
+//        for (int num : nums) {
+//            System.out.print(num + " ");
+//        }
     }
 }
